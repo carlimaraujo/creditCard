@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Cartão de Crédito</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+  </head>
+  <body>
+
+    <main class="grid">
+
+      <div class="grid">
+        <div class="card grid front" onclick="changeCard()">
+        <div class="top flex">
+          <img src="./assets/mastercard.svg" alt="Bandeira" />
+          <img src="./assets/approximation.svg" alt="Símbolo de aproximação" />
+        </div>
+        <div class="middle">
+          <input type="text" placeholder="••••   ••••   ••••   ••••" disabled />
+        </div>
+        <div class="bottom">
+          <input type="text" placeholder="Seu nome aqui" disabled id="ccName" />
+          <input
+            type="text"
+            placeholder="••/••"
+            disabled
+            maxlength="5"
+            id="ccValidity"
+          />
+        </div>
+      </div>
+
+      <div class="card grid back" onclick="changeCard()" style="display: none;">
+        <img src="./assets/Rectangle.png" alt="" />
+        <div class="cvvNumber flex">
+          <input
+            type="text"
+            disabled
+            placeholder="• • •"
+            class="flex"
+            id="cvvCard"
+            maxlength=""
+          />
+          <label>CVV</label>
+        </div>
+      </div>
+
+      <form class="grid" id="form">
+        <div class="card-number grid">
+          <label>Número do cartão</label>
+          <input
+            type="text"
+            placeholder="**** **** **** ****"
+            required
+            id="cc-number"
+            oninput="cardNumberUpdate()"
+            maxlength="19"
+            onfocus="changeToFront()"
+          />
+        </div>
+
+        <div class="name grid">
+          <label>Nome do titular</label>
+          <input
+            type="text"
+            placeholder="Nome como está no cartão"
+            required
+            id="inputName"
+            oninput="nameUpdate()"
+            onfocus="changeToFront()"
+          />
+          <div class="warning flex">
+            <img src="./assets/warning.svg" alt="Alerta" />
+            <span> Nome do titular é obrigatório </span>
+          </div>
+        </div>
+
+        <div class="validity-cvv flex">
+          <div class="validity grid">
+            <label>Validade</label>
+            <input
+              type="text"
+              placeholder="mm/aa"
+              maxlength="5"
+              required
+              id="cc-validity"
+              oninput="dateUpdate()"
+              onfocus="changeToFront()"
+
+            />
+          </div>
+          <div class="cvv grid">
+            <label class="flex"
+              >CVV
+              <img src="./assets/interrogation.svg" alt="Sinal de interrogação" title="Esse número geralmente está no verso do cartão"
+            /></label>
+            <input type="text" placeholder="***" required id="cc-cvv" oninput="updateCvv()" onfocus="changeToBack()"/>
+          </div>
+        </div>
+        
+      </div>
+
+      <span class="safe-info flex">
+          <img src="./assets/safe.svg" alt="Certificado de segurança" /> Seus
+          dados estão seguros
+        </span>
+        <button type="submit">Adicionar cartão</button>
+      </form>
+
+      
+    </main>
+    <script src="https://unpkg.com/imask"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
